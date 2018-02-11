@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start: 2018-02-10 16:17:52
+  duration: 1
+  origin: one
+  destination: one
+
+two:
+  start: 2018-02-10 16:17:52
+  duration: 1
+  origin: two
+  destination: two
