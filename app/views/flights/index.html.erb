@@ -1,2 +1,45 @@
 <h1>Flights#index</h1>
-<p>Find me in app/views/flights/index.html.erb</p>
+<%= form_tag(root_path, method: :get) do %>
+	From: <%= select_tag(:origin, options_for_select(@airport_options)) %>
+	To: <%= select_tag(:destination, options_for_select(@airport_options)) %>
+	Date: <%= select_tag(:departure_time, options_for_select(@date_options)) %>
+	Passengers: <%= select_tag(:num_tickets, options_for_select(@ticket_options)) %>
+
+	<%= button_tag("Submit") %>
+<% end %>
+
+<% if @found_flights %>
+	<% unless @found_flights.empty? %>
+		<%= form_tag new_booking_path, method: :get do %>
+			<%= hidden_field_tag :passengers, @num_tickets %>
+    	<table>
+      	<thead>
+        	<tr>
+          	<th>Flight No.</th>
+          	<th>Origin</th>
+          	<th>Destination</th>
+    	      <th>Departure Time</th>
+   	        <th>Arrival Time</th>
+   	        <th></th>
+   	     	</tr>
+  	    </thead>
+  	    <tbody>
+      		<% @found_flights.each do |flight| %>
+      		<tr>
+      			<td><%= flight.id %></td>
+      			<td><%= flight.origin.name %></td>
+      			<td><%= flight.destination.name %></td>
+      			<td><%= flight.departure_time.strftime("%r") %></td>
+      			<td><%= (flight.departure_time + flight.duration.hours).strftime("%r") %></td>
+      			<td><%= radio_button_tag :flight_id, flight.id, false %></td>
+      		</tr>
+      		<% end %>
+      	</tbody>
+   	  </table>
+    	<br>
+    	<%= submit_tag('Choose Flight') %>
+  	<% end %>
+	<% else %>
+		<div>No matching flights found.</div>
+	<% end %>
+<% end %>
