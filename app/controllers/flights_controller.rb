@@ -2,7 +2,6 @@ class FlightsController < ApplicationController
   
   def index
   	@airport_options = Airport.all.map { |a| [a.name, a.id] }
-  	#FIX THESE OPTIONS SO DROP DOWN ONLY HAS ACTUAL CALENDAR DATES
   	@date_options = Flight.all.order('departure_time ASC').map { |d| d.formatted_date }.uniq
   	@ticket_options = [["1", 1], ["2", 2], ["3", 3], ["4", 4]]
   	@found_flights = found_flights if params[:button]

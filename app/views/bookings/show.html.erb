@@ -1,0 +1,16 @@
+<h1>Bookings#show</h1>
+<h2>Flight No. <%= @flight.id %></h2>
+<div>Origin: <%= @flight.origin.name %></div>
+<div>Destination: <%= @flight.destination.name %></div>
+<div>Date: <%= @flight.formatted_date %></div>
+<div>Departs at: <%= @flight.departure_time.strftime("%r") %></div>
+<div>Arrives at: <%= @flight.arrival_time.strftime("%r") %></div>
+
+<h2>Passengers</h2>
+<% if @booking.passengers.any? %>
+	<ol>
+		<% @booking.passengers.each do |p| %>
+			<li><%= p.name %> (<%= p.email %>)</li>
+		<% end %>
+	</ol>
+<% end %>

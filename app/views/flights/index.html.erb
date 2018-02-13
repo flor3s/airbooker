@@ -11,7 +11,7 @@
 <% if @found_flights %>
 	<% unless @found_flights.empty? %>
 		<%= form_tag new_booking_path, method: :get do %>
-			<%= hidden_field_tag :passengers, @num_tickets %>
+			<%= hidden_field_tag :num_tickets, params[:num_tickets] %>
     	<table>
       	<thead>
         	<tr>
@@ -30,7 +30,7 @@
       			<td><%= flight.origin.name %></td>
       			<td><%= flight.destination.name %></td>
       			<td><%= flight.departure_time.strftime("%r") %></td>
-      			<td><%= (flight.departure_time + flight.duration.hours).strftime("%r") %></td>
+      			<td><%= flight.arrival_time.strftime("%r") %></td>
       			<td><%= radio_button_tag :flight_id, flight.id, false %></td>
       		</tr>
       		<% end %>
