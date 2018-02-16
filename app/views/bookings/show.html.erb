@@ -1,16 +1,23 @@
-<h1>Bookings#show</h1>
-<h2>Flight No. <%= @flight.id %></h2>
-<div>Origin: <%= @flight.origin.name %></div>
-<div>Destination: <%= @flight.destination.name %></div>
-<div>Date: <%= @flight.formatted_date %></div>
-<div>Departs at: <%= @flight.departure_time.strftime("%r") %></div>
-<div>Arrives at: <%= @flight.arrival_time.strftime("%r") %></div>
+<div class="booking-title"><h1>Booking Information</h1></div>
+<h2>Flight No. <%= @flight.id %>, Duration: <%= @flight.duration %> hour(s) </h2>
+<div class="row">
+	<div class="form-group col-md-6 text-center">
+		<div>Origin: <%= @flight.origin.name %></div>
+		<div>Departs at: <%= @flight.departure_time.strftime("%I:%M %p") %>, <%= @flight.formatted_date %></div>
+	</div>
+	<div class="col-md-6 text-center">
+		<div>Destination: <%= @flight.destination.name %></div>
+		<div>Arrives at: <%= @flight.arrival_time.strftime("%I:%M %p") %>, <%= @flight.formatted_date %></div>
+	</div>
+</div>
 
-<h2>Passengers</h2>
+<h3 class="center">Passengers</h3>
 <% if @booking.passengers.any? %>
-	<ol>
+	<div class="center">
+	<ol class="center">
 		<% @booking.passengers.each do |p| %>
 			<li><%= p.name %> (<%= p.email %>)</li>
 		<% end %>
 	</ol>
+</div>
 <% end %>

@@ -4,7 +4,7 @@ class FlightsController < ApplicationController
   	@airport_options = Airport.all.map { |a| [a.name, a.id] }
   	@date_options = Flight.all.order('departure_time ASC').map { |d| d.formatted_date }.uniq
   	@ticket_options = [["1", 1], ["2", 2], ["3", 3], ["4", 4]]
-  	@found_flights = found_flights if params[:button]
+  	@found_flights = found_flights if params[:commit]
   end
 
   private
