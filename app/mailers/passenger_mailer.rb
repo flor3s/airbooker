@@ -1,4 +1,4 @@
-class PassengerMailer < ApplicationMailer
+class PassengerMailer < ApplicationMailer 
 
   def successful_booking(passenger)
     @passenger = passenger
