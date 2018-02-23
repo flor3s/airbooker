@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+
   def new
   	@flight = Flight.find(params[:flight_id])
   	@seats = params[:num_tickets].to_i
@@ -7,12 +8,17 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(booking_params)
+    @booking = Booking.new(booking_params.except(:num_tickets))
     if @booking.save
-      flash[:success] = "Flight booked!"
+      @booking.passengers.each do |p|
+        PassengerMailer.successful_booking(@passenger).deliver_now
+      end
+      flash[:success] = "Flight booked! Flight information has been sent to the given email(s)."
       redirect_to @booking
     else 
-      redirect_to root_path
+      @flight = Flight.find(booking_params[:flight_id])
+      @seats = booking_params[:num_tickets].to_i
+      render 'new'
     end
   end
 
@@ -23,7 +29,6 @@ class BookingsController < ApplicationController
 
   private
     def booking_params
-      params.require(:booking).permit(:flight_id, passengers_attributes: [:id, :name, :email])
+      params.require(:booking).permit(:flight_id, :num_tickets, passengers_attributes: [:id, :name, :email])
     end
-
 end

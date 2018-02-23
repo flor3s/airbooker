@@ -1,0 +1,15 @@
+<h1>Airbooker</h1>
+
+<p><%= @passenger.name %>,</p>
+
+<p>Please review your scheduled flight information below:</p>
+
+
+<h3>Flight No. <%= @passenger.booking.flight.id %></h3>
+<p>
+Departs at: <%= @passenger.booking.flight.departure_time.strftime("%I:%M %p") %><br>
+Arrives at: <%= @passenger.booking.flight.arrival_time.strftime("%I:%M %p") %><br>
+Travel time: <%= @passenger.booking.flight.duration %> hour(s)<br>
+</p>
+
+<p>Enjoy your flight!</p>

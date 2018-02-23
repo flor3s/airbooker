@@ -1,0 +1,10 @@
+<%= @passenger.name %>,
+
+Please review your scheduled flight information below:
+
+Flight No. <%= @passenger.booking.flight.id %>
+Departs at: <%= @passenger.booking.flight.departure_time.strftime("%I:%M %p") %>
+Arrives at: <%= @passenger.booking.flight.arrival_time.strftime("%I:%M %p") %>
+Travel time: <%= @passenger.booking.flight.duration %> hour(s)
+
+Enjoy your flight!

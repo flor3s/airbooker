@@ -12,11 +12,12 @@
 </div>
 
 <%= form_for @booking do |f| %>
+	<%= render 'shared/error_messages' %>
 	<% passenger = 1 %>
 	<% @seats.times do %>
 		<h3>Passenger <%= passenger.to_s %>:</h3>
 			<%= f.hidden_field :flight_id, value: @flight.id %>
- 			<%= hidden_field_tag :flight_id, value: @flight.id %>
+			<%= f.hidden_field :num_tickets, value: @seats %>
 			<%= f.fields_for :passengers, @booking.passengers.build do |p| %>
         <%= p.label :name, "Name: " %>
 				<%= p.text_field :name %>
