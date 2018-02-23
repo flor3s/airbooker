@@ -11,7 +11,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params.except(:num_tickets))
     if @booking.save
       @booking.passengers.each do |p|
-        PassengerMailer.successful_booking(@passenger).deliver_now
+        PassengerMailer.successful_booking(p).deliver_now
       end
       flash[:success] = "Flight booked! Flight information has been sent to the given email(s)."
       redirect_to @booking
