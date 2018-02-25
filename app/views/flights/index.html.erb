@@ -20,8 +20,8 @@
 	<%= submit_tag("Search") %>
 <% end %>
 
-<% if @found_flights %>
-	<% unless @found_flights.empty? %>
+<% if @flights %>
+	<% unless @flights.empty? %>
 		<%= form_tag new_booking_path, method: :get do %>
 			<%= hidden_field_tag :num_tickets, params[:num_tickets] %>
     	<table class="table table-striped table-hover">
@@ -36,7 +36,8 @@
    	     	</tr>
   	    </thead>
   	    <tbody>
-      		<% @found_flights.each do |flight| %>
+
+      		<% @flights.each do |flight| %>
       		<tr>
       			<td><%= flight.id %></td>
       			<td><%= flight.origin.name %></td>
@@ -46,6 +47,8 @@
       			<td><%= radio_button_tag :flight_id, flight.id, false %></td>
       		</tr>
       		<% end %>
+
+          <%= will_paginate @flights %>
       	</tbody>
    	  </table>
     	<br>
