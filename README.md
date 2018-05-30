@@ -1,24 +1,7 @@
-# README
+# AIRBOOKER
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Airbooker allows a user to find and sign up for flights for up to 4 passengers, and then sends an email confirmation upon successful booking.
 
-Things you may want to cover:
+This app utilizes nested forms, drop down menus, multiple models (Flights, Passengers, Bookings), and mailers in order to represent and deliver its data to the user.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+see it in action at http://airbooker.herokuapp.com
